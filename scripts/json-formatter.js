@@ -146,6 +146,13 @@ document.addEventListener("DOMContentLoaded", function () {
     document.removeEventListener("mouseup", stopResize);
   }
 
+  // 页面加载时自动进入最大化模式
+  document.body.classList.add("maximized");
+  document.querySelector('.toolbar').style.visibility = 'visible';
+  maximizeBtn.style.display = "none";
+  restoreBtn.style.display = "inline-block";
+  console.log("已自动最大化", document.body.classList);
+
   // 初始格式化
   formatJSON();
 }); 

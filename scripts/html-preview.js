@@ -196,7 +196,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // 检查并应用最大化状态
   function checkAndApplyMaximizeState() {
     const state = getMaximizeState();
-    if (state && state.isMaximized) {
+    // 默认最大化，除非用户明确选择了还原
+    if (!state || state.isMaximized !== false) {
       maximizeEditor();
     }
   }
