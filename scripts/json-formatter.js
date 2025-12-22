@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const copyBtn = document.getElementById("copy-btn");
   const collapseBtn = document.getElementById("collapse-btn");
   const clearBtn = document.getElementById("clear-btn");
+  const simplifyBtn = document.getElementById("simplify-btn");
   const maximizeBtn = document.getElementById("maximize-btn");
   const restoreBtn = document.getElementById("restore-btn");
   const dragbar = document.getElementById("dragbar");
@@ -24,16 +25,32 @@ document.addEventListener("DOMContentLoaded", function () {
   // 页面加载时初始化面板
   initializePanels();
 
+  // 同步右侧编辑器内容到左侧输入框
+  function syncToInput() {
+    try {
+      const json = jsonEditor.get();
+      jsonInput.value = JSON.stringify(json, null, 4);
+    } catch (e) {
+      console.error("同步失败：", e.message);
+    }
+  }
+
   // 创建JSON编辑器实例
   const options = {
-    mode: "view",
-    modes: ["view"], // 只读模式
+    mode: "tree",
+    modes: ["tree", "view"], // 支持树形编辑和只读模式
     onError: function (err) {
       alert("JSON格式不正确：" + err.toString());
+    },
+    onChange: function () {
+      // 当编辑器内容变化时，自动同步到左侧输入框
+      syncToInput();
     },
     navigationBar: false,
     statusBar: false,
     mainMenuBar: false,
+    enableSort: false,
+    enableTransform: false,
   };
   const jsonEditor = new JSONEditor(jsonOutputContainer, options);
 
@@ -90,6 +107,42 @@ document.addEventListener("DOMContentLoaded", function () {
     collapseBtn.innerHTML = '<i class="fas fa-compress-arrows-alt"></i> 折叠';
   }
 
+  // 精简JSON结构：数组只保留第一个元素，对象保留所有键但递归精简
+  function simplifyJSON(data) {
+    if (Array.isArray(data)) {
+      // 数组只保留第一个元素，并递归精简
+      if (data.length > 0) {
+        return [simplifyJSON(data[0])];
+      }
+      return [];
+    } else if (data !== null && typeof data === 'object') {
+      // 对象保留所有键，但递归精简每个值
+      const result = {};
+      for (const key in data) {
+        if (Object.prototype.hasOwnProperty.call(data, key)) {
+          result[key] = simplifyJSON(data[key]);
+        }
+      }
+      return result;
+    }
+    // 基本类型直接返回
+    return data;
+  }
+
+  function doSimplifyJSON() {
+    try {
+      const json = jsonEditor.get();
+      const simplified = simplifyJSON(json);
+      jsonInput.value = JSON.stringify(simplified, null, 4);
+      jsonEditor.set(simplified);
+      jsonEditor.expandAll();
+      isCollapsed = false;
+      collapseBtn.innerHTML = '<i class="fas fa-compress-arrows-alt"></i> 折叠';
+    } catch (e) {
+      alert("精简失败：" + e.message);
+    }
+  }
+
   // 自动格式化
   jsonInput.addEventListener("input", () => {
     formatJSON();
@@ -100,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
   collapseBtn.addEventListener("click", collapseJSON);
   copyBtn.addEventListener("click", copyJSON);
   clearBtn.addEventListener("click", clearJSON);
+  simplifyBtn.addEventListener("click", doSimplifyJSON);
 
   // 最大化功能
   maximizeBtn.addEventListener("click", () => {

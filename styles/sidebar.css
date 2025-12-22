@@ -1,6 +1,6 @@
 /* 侧边栏样式 */
 :root {
-  --sidebar-width: 260px;
+  --sidebar-width: 200px;
   --sidebar-collapsed-width: 0px;
   --sidebar-toggle-size: 40px;
   --sidebar-bg: #ffffff;

@@ -179,3 +179,61 @@ footer {
 /* body.sidebar-open main{
     padding-top: 0px;
 } */
+
+
+/* JSON Editor 树形模式样式优化 */
+#json-output .jsoneditor-contextmenu {
+    z-index: 1000;
+}
+
+/* 删除按钮高亮样式 */
+#json-output .jsoneditor-remove {
+    color: #dc3545 !important;
+}
+
+#json-output .jsoneditor-remove:hover {
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+/* 节点悬停效果 */
+#json-output .jsoneditor-tree tr:hover {
+    background-color: rgba(0, 122, 255, 0.1);
+}
+
+body.dark-mode #json-output .jsoneditor-tree tr:hover {
+    background-color: rgba(10, 132, 255, 0.2);
+}
+
+/* 提示文字样式 */
+.editor-tip {
+    font-size: 12px;
+    color: #666;
+    padding: 5px 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+body.dark-mode .editor-tip {
+    background-color: #2d2d2d;
+    color: #aaa;
+}
+
+
+/* 精简结构按钮高亮样式 */
+.buttons .btn-highlight {
+    background-color: #28a745 !important;
+}
+
+.buttons .btn-highlight:hover {
+    background-color: #218838 !important;
+}
+
+body.dark-mode .buttons .btn-highlight {
+    background-color: #34c759 !important;
+}
+
+body.dark-mode .buttons .btn-highlight:hover {
+    background-color: #2db84d !important;
+}
