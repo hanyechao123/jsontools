@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="OKKJSON使用条款，说明使用规则、免责声明与责任限制。">
+    <meta name="keywords" content="使用条款,服务条款,免责声明,责任限制">
+    <meta name="author" content="OKKJSON">
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+
+    <title>使用条款 - OKKJSON</title>
+
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/common.css">
+
+    <!-- Umami 统计脚本延迟加载器 -->
+    <script src="../scripts/umami-loader.js"></script>
+
+    <style>
+        .legal-page {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 3rem;
+        }
+        .legal-page h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        .legal-page h2 {
+            font-size: 1.4rem;
+            margin: 2rem 0 0.8rem;
+        }
+        .legal-page p {
+            line-height: 1.8;
+            color: #4b5563;
+            margin: 0.8rem 0;
+        }
+        .legal-page .meta {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+        .legal-page .highlight {
+            background: rgba(245, 158, 11, 0.12);
+            border-left: 4px solid #f59e0b;
+            padding: 0.9rem 1rem;
+            border-radius: 8px;
+        }
+        body.dark-mode .legal-page p {
+            color: #d1d5db;
+        }
+        body.dark-mode .legal-page .meta {
+            color: #9ca3af;
+        }
+        body.dark-mode .legal-page .highlight {
+            background: rgba(245, 158, 11, 0.2);
+            border-left-color: #fbbf24;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <nav class="navbar">
+        <div class="nav-logo">
+            <a href="../index.html">
+                <img src="../assets/favicon/favicon-32x32.png" alt="OKKJSON">
+                OKKJSON
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html"><i class="fas fa-home"></i>首页</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i>关于我们</a></li>
+            <li><a href="privacy.html"><i class="fas fa-user-shield"></i>隐私政策</a></li>
+            <li><a href="terms.html" class="active"><i class="fas fa-file-contract"></i>使用条款</a></li>
+        </ul>
+        <div class="nav-right">
+            <div class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+                <label for="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </label>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container legal-page">
+        <h1>使用条款</h1>
+        <p class="meta">最后更新日期：2026-02-22</p>
+
+        <p>欢迎使用OKKJSON。访问或使用本站即表示您同意遵守以下条款。如不同意，请停止使用本站服务。</p>
+
+        <h2>1. 服务说明</h2>
+        <p>本站提供一组在线工具与内容展示，功能可能随时调整或更新。我们会尽力保障服务稳定，但不对服务中断或错误承担保证责任。</p>
+
+        <h2>2. 使用规范</h2>
+        <p>您同意不利用本站进行任何违法、侵权或有害行为，不上传或传播恶意内容。</p>
+
+        <h2>3. 知识产权</h2>
+        <p>本站页面、文字、图标与代码等内容的权利归本站或相关权利人所有。未经许可不得复制、修改、传播或用于商业用途。</p>
+
+        <div class="highlight">
+            <p>如需商业合作或授权使用，请先联系我们。</p>
+        </div>
+
+        <h2>4. 免责声明与责任限制</h2>
+        <p>本站工具以“现状”提供。我们不对因使用工具造成的直接或间接损失承担责任，包括但不限于数据丢失、业务中断或利润损失。</p>
+
+        <h2>5. 条款变更</h2>
+        <p>我们可能根据业务需要更新条款，并在本页面进行公示。更新后继续使用即视为接受新条款。</p>
+
+        <h2>6. 联系方式</h2>
+        <p>邮箱：1090489629@qq.com</p>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="about.html">关于我们</a>
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">使用条款</a>
+                <a href="about.html#contact">联系我们</a>
+            </div>
+            <div class="copyright">
+                © 2026 OKKJSON | 用<span class="love">♥</span>制作 | 所有工具本地运行，数据不上传服务器
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>

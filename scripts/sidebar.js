@@ -10,7 +10,7 @@
 
   // 内联备用配置（当 fetch 失败时使用）
   const FALLBACK_CONFIG = {
-    "siteName": "蔚蓝工具导航",
+    "siteName": "OKKJSON",
     "categories": [
       {
         "name": "开发工具",
