@@ -3,15 +3,35 @@
     <!-- 首页 -->
     <url>
         <loc>https://your-domain.com/</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2026-02-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+    </url>
+
+    <!-- 关于/隐私/条款 -->
+    <url>
+        <loc>https://your-domain.com/pages/about.html</loc>
+        <lastmod>2026-02-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://your-domain.com/pages/privacy.html</loc>
+        <lastmod>2026-02-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://your-domain.com/pages/terms.html</loc>
+        <lastmod>2026-02-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
     </url>
 
     <!-- JSON格式化工具 -->
     <url>
         <loc>https://your-domain.com/pages/json_formatter.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2026-02-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -19,7 +39,7 @@
     <!-- HTML预览工具 -->
     <url>
         <loc>https://your-domain.com/pages/html_preview.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2026-02-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -27,7 +47,7 @@
     <!-- 趣味数学大冒险 -->
     <url>
         <loc>https://your-domain.com/quwei.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2026-02-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -35,7 +55,7 @@
     <!-- 封面图制作 -->
     <url>
         <loc>https://your-domain.com/cover_creator.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2026-02-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -43,7 +63,7 @@
     <!-- 密码生成工具 -->
     <url>
         <loc>https://your-domain.com/pages/password_generation.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2026-02-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -51,7 +71,7 @@
     <!-- UUID生成工具 -->
     <url>
         <loc>https://your-domain.com/pages/uuid_generation.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2026-02-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -59,7 +79,7 @@
     <!-- Base64转换工具 -->
     <url>
         <loc>https://your-domain.com/pages/base64convert.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2026-02-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -67,7 +87,7 @@
     <!-- 拼字幕截图生成器 -->
     <url>
         <loc>https://your-domain.com/screenshot_generation.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2026-02-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -75,8 +95,8 @@
     <!-- Emoji选择器 -->
     <url>
         <loc>https://your-domain.com/pages/emoji_picker.html</loc>
-        <lastmod>2025-01-22</lastmod>
+        <lastmod>2026-02-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
-</urlset> 
+</urlset>
