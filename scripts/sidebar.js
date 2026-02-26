@@ -10,7 +10,7 @@
 
   // 内联备用配置（当 fetch 失败时使用）
   const FALLBACK_CONFIG = {
-    "siteName": "OKKJSON",
+    "siteName": "JSONTOP",
     "categories": [
       {
         "name": "开发工具",
