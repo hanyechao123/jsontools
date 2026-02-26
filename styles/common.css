@@ -372,6 +372,13 @@ footer .footer-content {
     gap: 15px;
 }
 
+footer .footer-ad {
+    width: 100%;
+    max-width: 728px;
+    margin: 0 auto;
+    text-align: center;
+}
+
 footer .footer-links {
     display: flex;
     justify-content: center;
