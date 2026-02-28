@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JSON 文件怎么打开：覆盖多平台打开方法、常用编辑器选择与错误处理。">
+    <meta name="keywords" content="JSON文件怎么打开,打开JSON,JSON编辑器,JSON教程">
+    <meta name="author" content="JSONTOP">
+    <meta name="robots" content="index, follow">
+
+    <link rel="icon" type="image/png" href="../assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+
+    <title>JSON 文件怎么打开 - JSONTOP 教程</title>
+
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/common.css">
+    <script src="../scripts/umami-loader.js"></script>
+
+    <style>
+        .article-wrap {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 2.2rem 1.2rem 3rem;
+        }
+        .article-box {
+            background: #fff;
+            border-radius: 14px;
+            padding: 1.6rem;
+            box-shadow: 0 14px 34px rgba(74, 108, 247, 0.12);
+            border: 1px solid rgba(74, 108, 247, 0.15);
+        }
+        .article-box h1 {
+            margin: 0 0 0.7rem;
+            font-size: 2rem;
+        }
+        .article-meta {
+            color: #6b7280;
+            margin: 0 0 1.2rem;
+            font-size: 0.95rem;
+        }
+        .article-box h2 {
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        .article-box p {
+            margin: 0.85rem 0;
+            color: #374151;
+            line-height: 1.92;
+        }
+        .back-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 0.9rem;
+            flex-wrap: wrap;
+        }
+        .back-links a {
+            padding: 0.5rem 0.9rem;
+            border-radius: 8px;
+            background: rgba(74, 108, 247, 0.08);
+        }
+        body.dark-mode .article-box {
+            background: #1f2937;
+            border-color: rgba(74, 108, 247, 0.25);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
+        }
+        body.dark-mode .article-box p,
+        body.dark-mode .article-meta {
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <nav class="navbar">
+        <div class="nav-logo">
+            <a href="../index.html">
+                <img src="../assets/favicon/favicon-32x32.png" alt="JSONTOP">
+                JSONTOP
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html"><i class="fas fa-home"></i>首页</a></li>
+            <li><a href="tutorials.html" class="active"><i class="fas fa-book-open"></i>教程</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i>关于我们</a></li>
+            <li><a href="privacy.html"><i class="fas fa-user-shield"></i>隐私政策</a></li>
+            <li><a href="terms.html"><i class="fas fa-file-contract"></i>使用条款</a></li>
+        </ul>
+        <div class="nav-right">
+            <div class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+                <label for="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </label>
+            </div>
+        </div>
+    </nav>
+
+    <main class="article-wrap">
+        <article class="article-box">
+            <h1>JSON 文件怎么打开</h1>
+            <p class="article-meta">教程分类：操作指南 | 更新时间：2026-02-28</p>
+
+            <h2>1. 先明确“打开”的目标</h2>
+            <p>很多人问“JSON 文件怎么打开”，实际需求并不一样。有些人只是想查看内容，有些人需要编辑并保存，还有些人要把 JSON 导入程序继续处理。先明确目标，才能选对工具。仅查看内容时，系统自带记事本或文本查看器就能完成；要高效编辑时，建议使用代码编辑器并开启语法高亮；如果还要验证格式是否正确，最好配合 JSON 校验工具。因为 JSON 是文本格式，所以任何能打开文本文件的软件都可以读它，但不同工具在“可读性、错误提示、格式化能力”上差别很大。</p>
+
+            <h2>2. Windows、macOS、Linux 的常用打开方式</h2>
+            <p>在 Windows 上，你可以右键 JSON 文件选择“打开方式”，用记事本、VS Code、Notepad++ 等工具打开。记事本适合临时查看，小文件没问题；大文件建议用 VS Code，这样可以折叠节点、快速搜索字段。macOS 上可以用“文本编辑”查看，但更推荐 VS Code、Sublime Text 或 JetBrains 系列编辑器，因为它们会自动识别 JSON 语法并高亮。Linux 环境中，图形界面常用 VS Code、Gedit，终端里可用 <code>cat</code>、<code>less</code>、<code>jq</code> 等命令查看和格式化。对于服务器环境，<code>jq</code> 尤其实用，可以快速按键路径过滤数据，提高排查效率。</p>
+
+            <h2>3. 手机上如何打开 JSON 文件</h2>
+            <p>手机端也能打开 JSON 文件，但体验会受限。iOS 可以使用“文件”应用结合支持代码高亮的 App 打开；Android 可使用支持文本编辑的文件管理器或代码编辑 App。若只是临时查看，直接把 JSON 粘贴到 JSONTOP 的在线格式化页面通常更直观。手机场景下最常见的问题是文件太大导致卡顿，或者复制过程中混入不可见字符。建议在电脑端完成主要编辑，手机端只做查看和轻量修改。若必须在手机端编辑，尽量保存备份版本，避免误删括号和引号。</p>
+
+            <h2>4. 打开后看到乱码或报错怎么办</h2>
+            <p>如果打开 JSON 后出现乱码，优先检查编码。多数项目都使用 UTF-8，若文件是 GBK、UTF-16 或其他编码，编辑器可能无法正确显示中文。你可以在编辑器底部切换文件编码并重新打开。若不是乱码而是解析报错，说明 JSON 结构可能有语法问题，例如缺少引号、括号不配对、逗号位置错误。此时可把内容粘贴到 JSON 格式化工具里查看错误位置，再回到编辑器修复。另一个常见问题是“.json 文件被系统关联到不合适的软件”，导致双击时打开体验很差。可以在系统设置里把默认打开方式改为代码编辑器。</p>
+
+            <h2>5. 推荐的实用工作流</h2>
+            <p>一个稳定且高效的工作流是：先在编辑器打开 JSON，完成修改后进行自动格式化，再用 JSON 校验确保语法正确，最后再提交或导入系统。如果是团队协作文件，建议统一缩进风格（2 空格或 4 空格）和字段命名规范，减少无意义 diff。对于线上配置类 JSON，修改前应先备份，再在测试环境验证，确认无误后再发布。你还可以把常用 JSON 片段做成模板，减少重复输入。掌握“选择合适工具 + 保持格式规范 + 先校验再使用”这三点后，JSON 文件的打开和编辑就会非常顺畅，不再是障碍。</p>
+
+            <div class="back-links">
+                <a href="tutorials.html"><i class="fas fa-arrow-left"></i> 返回教程列表</a>
+                <a href="../pages/json_formatter.html"><i class="fas fa-code"></i> 在线验证 JSON</a>
+                <a href="../index.html"><i class="fas fa-home"></i> 返回首页</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="tutorials.html">使用教程</a>
+                <a href="about.html">关于我们</a>
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">使用条款</a>
+                <a href="about.html#contact">联系我们</a>
+            </div>
+            <div class="copyright">
+                © 2026 JSONTOP | 用<span class="love">♥</span>制作 | 所有工具本地运行，数据不上传服务器
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JSON 解析教程：从前端到后端，掌握 JSON.parse、异常处理、数据校验与实战流程。">
+    <meta name="keywords" content="JSON解析,JSON.parse,JSON教程,数据校验">
+    <meta name="author" content="JSONTOP">
+    <meta name="robots" content="index, follow">
+
+    <link rel="icon" type="image/png" href="../assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+
+    <title>JSON 解析实战 - JSONTOP 教程</title>
+
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/common.css">
+    <script src="../scripts/umami-loader.js"></script>
+
+    <style>
+        .article-wrap {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 2.2rem 1.2rem 3rem;
+        }
+        .article-box {
+            background: #fff;
+            border-radius: 14px;
+            padding: 1.6rem;
+            box-shadow: 0 14px 34px rgba(74, 108, 247, 0.12);
+            border: 1px solid rgba(74, 108, 247, 0.15);
+        }
+        .article-box h1 {
+            margin: 0 0 0.7rem;
+            font-size: 2rem;
+        }
+        .article-meta {
+            color: #6b7280;
+            margin: 0 0 1.2rem;
+            font-size: 0.95rem;
+        }
+        .article-box h2 {
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        .article-box p {
+            margin: 0.85rem 0;
+            color: #374151;
+            line-height: 1.92;
+        }
+        .back-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 0.9rem;
+            flex-wrap: wrap;
+        }
+        .back-links a {
+            padding: 0.5rem 0.9rem;
+            border-radius: 8px;
+            background: rgba(74, 108, 247, 0.08);
+        }
+        body.dark-mode .article-box {
+            background: #1f2937;
+            border-color: rgba(74, 108, 247, 0.25);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
+        }
+        body.dark-mode .article-box p,
+        body.dark-mode .article-meta {
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <nav class="navbar">
+        <div class="nav-logo">
+            <a href="../index.html">
+                <img src="../assets/favicon/favicon-32x32.png" alt="JSONTOP">
+                JSONTOP
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html"><i class="fas fa-home"></i>首页</a></li>
+            <li><a href="tutorials.html" class="active"><i class="fas fa-book-open"></i>教程</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i>关于我们</a></li>
+            <li><a href="privacy.html"><i class="fas fa-user-shield"></i>隐私政策</a></li>
+            <li><a href="terms.html"><i class="fas fa-file-contract"></i>使用条款</a></li>
+        </ul>
+        <div class="nav-right">
+            <div class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+                <label for="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </label>
+            </div>
+        </div>
+    </nav>
+
+    <main class="article-wrap">
+        <article class="article-box">
+            <h1>JSON 解析实战</h1>
+            <p class="article-meta">教程分类：开发实践 | 更新时间：2026-02-28</p>
+
+            <h2>1. 解析 JSON 的本质是什么</h2>
+            <p>“JSON 解析”本质上是把字符串形式的数据，转换成程序可以直接访问的对象结构。接口返回给你的通常是一段 JSON 字符串，程序内部要读取字段，就必须先解析。比如你拿到 <code>{"code":0,"data":{"name":"Alice"}}</code> 这段文本，不解析的话只能当字符串处理；解析后才能通过对象路径访问字段。几乎每一种开发语言都有对应方法，例如 JavaScript 的 <code>JSON.parse</code>、Python 的 <code>json.loads</code>、Java 的 Jackson/Gson、Go 的 <code>json.Unmarshal</code>。所以学 JSON 解析，不只是学一个函数，而是学一套安全读取数据的流程。</p>
+
+            <h2>2. 前端解析流程与注意事项</h2>
+            <p>在浏览器端，最常见的写法是先通过 <code>fetch</code> 获取响应，再调用 <code>response.json()</code>，系统会自动把 JSON 文本转成对象。如果你手里已有字符串，就用 <code>JSON.parse(text)</code>。解析时最大的风险是格式错误导致程序抛异常，因此不要把解析写成“裸调用”，而应该配合 <code>try...catch</code>。很多线上问题都来自“接口偶发返回 HTML 错误页”，开发者仍然按 JSON 去解析，最终页面直接报错。你可以先检查响应状态码和 <code>Content-Type</code>，确认是 JSON 再解析，这样稳定性会明显提升。</p>
+
+            <h2>3. 后端和脚本中的解析策略</h2>
+            <p>在后端服务中，JSON 解析通常发生在请求入参处理、配置加载和消息队列消费三个位置。实践中建议把“解析”和“校验”拆开：先把 JSON 转成对象，再按字段规则做校验。比如字段类型、必填项、数值范围、枚举值等。如果只解析不校验，程序可能在更深的业务代码里才出错，排查成本高。对于配置文件解析，建议在服务启动阶段一次性校验并输出清晰错误日志，防止线上启动后才发现配置缺失。对于批量数据处理，建议记录失败样本并继续处理下一条，而不是整批任务直接中断。</p>
+
+            <h2>4. 常见解析报错与排查顺序</h2>
+            <p>最常见报错是语法错误，如键名没加双引号、字符串里出现未转义引号、末尾多逗号、非法控制字符。其次是编码问题，例如文件并非 UTF-8，导致解析器读取到异常字符。第三类是结构不匹配，比如你预期拿到对象，实际拿到数组或空值。排查建议按顺序进行：第一步打印原始字符串，确认是不是你以为的数据；第二步用 JSON 格式化工具验证语法；第三步检查字段层级是否变化；第四步补充容错逻辑和默认值。很多看似“解析失败”的问题，实际上是上游接口返回结构变更引发的。</p>
+
+            <h2>5. 让解析代码更可维护的做法</h2>
+            <p>建议把 JSON 解析与映射逻辑封装成统一函数，避免在多个页面或多个服务中重复写解析细节。可以引入 schema 校验库，明确每个字段的类型和约束，在进入业务逻辑之前就完成数据过滤。对于重要接口，建议保留一组示例 JSON 数据做自动化测试，这样当接口升级时能及时发现不兼容变更。最后，给关键错误加上上下文信息，例如请求地址、请求时间、traceId、原始响应截断片段，能显著提升定位速度。只要把“解析、校验、容错、记录”四步做完整，JSON 解析就会从脆弱点变成稳定点。</p>
+
+            <div class="back-links">
+                <a href="tutorials.html"><i class="fas fa-arrow-left"></i> 返回教程列表</a>
+                <a href="../pages/json_formatter.html"><i class="fas fa-code"></i> 使用 JSON 格式化工具</a>
+                <a href="../index.html"><i class="fas fa-home"></i> 返回首页</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="tutorials.html">使用教程</a>
+                <a href="about.html">关于我们</a>
+                <a href="privacy.html">隐私政策</a>
+                <a href="terms.html">使用条款</a>
+                <a href="about.html#contact">联系我们</a>
+            </div>
+            <div class="copyright">
+                © 2026 JSONTOP | 用<span class="love">♥</span>制作 | 所有工具本地运行，数据不上传服务器
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>

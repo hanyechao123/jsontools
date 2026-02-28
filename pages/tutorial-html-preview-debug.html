@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HTML 在线预览工具排错教程：定位样式失效、脚本不执行和资源加载异常。">
+    <meta name="keywords" content="HTML预览排错,CSS失效,JS调试,在线预览工具教程">
+    <meta name="author" content="JSONTOP">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/png" href="../assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+    <title>HTML在线预览工具进阶：调试与排错 - JSONTOP 教程</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/common.css">
+    <script src="../scripts/umami-loader.js"></script>
+    <style>
+        .article-wrap { max-width: 940px; margin: 0 auto; padding: 2.2rem 1.2rem 3rem; }
+        .article-box { background: #fff; border-radius: 14px; padding: 1.6rem; box-shadow: 0 14px 34px rgba(74,108,247,0.12); border: 1px solid rgba(74,108,247,0.15); }
+        .article-box h1 { margin: 0 0 0.7rem; font-size: 1.92rem; }
+        .article-meta { color: #6b7280; margin: 0 0 1.2rem; font-size: 0.95rem; }
+        .article-box h2 { font-size: 1.2rem; margin-top: 1.45rem; }
+        .article-box p { margin: 0.8rem 0; color: #374151; line-height: 1.9; }
+        .back-links { margin-top: 1.5rem; display: flex; gap: 0.9rem; flex-wrap: wrap; }
+        .back-links a { padding: 0.5rem 0.9rem; border-radius: 8px; background: rgba(74,108,247,0.08); }
+        body.dark-mode .article-box { background: #1f2937; border-color: rgba(74,108,247,0.25); box-shadow: 0 14px 34px rgba(0,0,0,0.32); }
+        body.dark-mode .article-box p, body.dark-mode .article-meta { color: #d1d5db; }
+    </style>
+</head>
+<body class="light-mode">
+    <nav class="navbar">
+        <div class="nav-logo"><a href="../index.html"><img src="../assets/favicon/favicon-32x32.png" alt="JSONTOP">JSONTOP</a></div>
+        <ul class="nav-links">
+            <li><a href="../index.html"><i class="fas fa-home"></i>首页</a></li>
+            <li><a href="tutorials.html" class="active"><i class="fas fa-book-open"></i>教程</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i>关于我们</a></li>
+            <li><a href="privacy.html"><i class="fas fa-user-shield"></i>隐私政策</a></li>
+            <li><a href="terms.html"><i class="fas fa-file-contract"></i>使用条款</a></li>
+        </ul>
+        <div class="nav-right"><div class="theme-switch"><input type="checkbox" id="theme-toggle"><label for="theme-toggle"><i class="fas fa-moon"></i></label></div></div>
+    </nav>
+    <main class="article-wrap">
+        <article class="article-box">
+            <h1>HTML在线预览工具进阶：调试与排错</h1>
+            <p class="article-meta">教程分类：HTML预览 | 更新时间：2026-02-28</p>
+            <h2>1. 排错的关键是建立顺序</h2>
+            <p>在 HTML 在线预览工具中，最常见问题是“页面没反应”或“效果和预期差很多”。很多人会立刻大改代码，结果越改越乱。更稳妥的方法是按顺序排查：先确认 HTML 结构是否正确，再确认 CSS 是否生效，最后确认 JavaScript 是否执行。这个顺序的原因很简单，结构是基础，样式依赖结构，脚本又依赖结构和样式状态。如果结构层就有错误，后面再调样式和脚本通常只是浪费时间。你可以把每一层都压缩成最小可运行片段，逐层恢复，从而快速定位根因。</p>
+            <h2>2. CSS 看起来没生效怎么办</h2>
+            <p>CSS 失效通常来自选择器写错、优先级不足、样式被覆盖、单位遗漏。先检查选择器是否能准确命中目标元素，再看是否有更高优先级规则覆盖。对于复杂页面，可临时给目标元素加一个独特类名，验证样式链路是否通。还要注意常见低级错误，例如写成 <code>width: 100</code> 少了单位、写成 <code>font-color</code> 这种不存在的属性。在线预览的优势是你可以即时修改并观察，建议一次只改一条规则，避免多处同时改动导致判断失真。</p>
+            <h2>3. JavaScript 不执行的常见原因</h2>
+            <p>脚本不执行经常是因为元素未渲染就先被查询，或函数名拼写错误，或事件绑定对象不存在。建议把脚本放在 HTML 底部，或者使用 <code>DOMContentLoaded</code> 保证 DOM 已加载。其次检查变量作用域，确认没有重复声明与命名冲突。再检查是否有语法错误导致脚本提前中断，哪怕一个括号不匹配，后续逻辑都会失效。调试时把复杂逻辑拆成多个小函数，并逐步在关键节点输出状态，能快速判断执行链路卡在哪里。</p>
+            <h2>4. 外链资源与兼容问题</h2>
+            <p>若页面依赖外部字体、图标库、第三方脚本，资源加载失败会直接影响预览结果。你应确认链接可访问、协议正确、路径无误。另一个高频问题是浏览器兼容差异，某些新特性在旧环境下表现不一致。建议先确保核心功能依赖稳定语法，再逐步增加增强特性。对于关键样式和交互，尽量给出降级方案，确保在不支持高级特性的环境里仍可用。在线预览适合快速试验，但正式上线前仍要在目标环境做真实验证。</p>
+            <h2>5. 把排错经验固化为清单</h2>
+            <p>建议你建立一份个人排错清单，至少包含：标签闭合检查、类名拼写检查、脚本加载顺序检查、资源路径检查、断点宽度检查。每次出问题按清单走一遍，排错效率会明显提升。进一步可以把高频问题和解决方式整理成团队文档，帮助新人快速上手。HTML 在线预览工具的真正价值不仅是“写出来”，更是“快速定位并修复问题”。当你形成稳定排错流程，开发质量会比只会写页面的人高出一个层级。</p>
+            <div class="back-links">
+                <a href="tutorials.html"><i class="fas fa-arrow-left"></i> 返回教程列表</a>
+                <a href="../pages/html_preview.html"><i class="fas fa-code-branch"></i> 打开HTML预览工具</a>
+                <a href="../index.html"><i class="fas fa-home"></i> 返回首页</a>
+            </div>
+        </article>
+    </main>
+    <footer><div class="footer-content"><div class="footer-links"><a href="tutorials.html">使用教程</a><a href="about.html">关于我们</a><a href="privacy.html">隐私政策</a><a href="terms.html">使用条款</a><a href="about.html#contact">联系我们</a></div><div class="copyright">© 2026 JSONTOP | 用<span class="love">♥</span>制作 | 所有工具本地运行，数据不上传服务器</div></div></footer>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark-mode'); themeToggle.checked = true; }
+        themeToggle.addEventListener('change', function() { if (this.checked) { document.body.classList.add('dark-mode'); localStorage.setItem('theme', 'dark'); } else { document.body.classList.remove('dark-mode'); localStorage.setItem('theme', 'light'); } });
+    </script>
+</body>
+</html>

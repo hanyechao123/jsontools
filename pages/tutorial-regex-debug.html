@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="正则表达式测试器进阶教程：调试路径、优先级陷阱、贪婪回溯与性能优化。">
+    <meta name="keywords" content="正则调试,正则性能,灾难性回溯,regex优化,优先级">
+    <meta name="author" content="JSONTOP">
+    <meta name="robots" content="index, follow">
+
+    <link rel="icon" type="image/png" href="../assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+
+    <title>正则测试器进阶：调试与性能优化 - JSONTOP 教程</title>
+
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/common.css">
+    <script src="../scripts/umami-loader.js"></script>
+
+    <style>
+        .article-wrap { max-width: 940px; margin: 0 auto; padding: 2.2rem 1.2rem 3rem; }
+        .article-box { background: #fff; border-radius: 14px; padding: 1.6rem; box-shadow: 0 14px 34px rgba(74,108,247,0.12); border: 1px solid rgba(74,108,247,0.15); }
+        .article-box h1 { margin: 0 0 0.7rem; font-size: 1.92rem; }
+        .article-meta { color: #6b7280; margin: 0 0 1.2rem; font-size: 0.95rem; }
+        .article-box h2 { font-size: 1.2rem; margin-top: 1.45rem; }
+        .article-box p { margin: 0.8rem 0; color: #374151; line-height: 1.9; }
+        .note-box { background: rgba(74,108,247,0.08); border-left: 4px solid #4A6CF7; border-radius: 10px; padding: 0.9rem 1rem; margin: 1rem 0; color: #374151; }
+        .back-links { margin-top: 1.5rem; display: flex; gap: 0.9rem; flex-wrap: wrap; }
+        .back-links a { padding: 0.5rem 0.9rem; border-radius: 8px; background: rgba(74,108,247,0.08); }
+        body.dark-mode .article-box { background: #1f2937; border-color: rgba(74,108,247,0.25); box-shadow: 0 14px 34px rgba(0,0,0,0.32); }
+        body.dark-mode .article-box p, body.dark-mode .article-meta, body.dark-mode .note-box { color: #d1d5db; }
+        body.dark-mode .note-box { background: rgba(74,108,247,0.18); border-left-color: #6e89f8; }
+    </style>
+</head>
+<body class="light-mode">
+    <nav class="navbar">
+        <div class="nav-logo"><a href="../index.html"><img src="../assets/favicon/favicon-32x32.png" alt="JSONTOP">JSONTOP</a></div>
+        <ul class="nav-links">
+            <li><a href="../index.html"><i class="fas fa-home"></i>首页</a></li>
+            <li><a href="tutorials.html" class="active"><i class="fas fa-book-open"></i>教程</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i>关于我们</a></li>
+            <li><a href="privacy.html"><i class="fas fa-user-shield"></i>隐私政策</a></li>
+            <li><a href="terms.html"><i class="fas fa-file-contract"></i>使用条款</a></li>
+        </ul>
+        <div class="nav-right"><div class="theme-switch"><input type="checkbox" id="theme-toggle"><label for="theme-toggle"><i class="fas fa-moon"></i></label></div></div>
+    </nav>
+
+    <main class="article-wrap">
+        <article class="article-box">
+            <h1>正则测试器进阶：调试与性能优化</h1>
+            <p class="article-meta">教程分类：正则进阶 | 更新时间：2026-02-28</p>
+
+            <h2>1. 进阶调试：先看优先级，再看量词</h2>
+            <p>复杂正则失败时，优先级和量词通常是首要问题。按照常见规则，管道符 <code>|</code> 优先级较低，如果不加分组，表达式经常会被错误拆解；量词默认贪婪，可能吞掉过多文本。建议你在 JSONTOP 测试器里先把表达式按分组拆开，单独验证每个分支，再合并。这样能快速识别是“结构错误”还是“次数错误”。许多线上误匹配并不是语法不会，而是优先级理解偏差。</p>
+
+            <h2>2. 贪婪、懒惰与回溯</h2>
+            <p>贪婪量词（如 <code>*</code>、<code>+</code>）会尽量多匹配，懒惰量词（如 <code>*?</code>、<code>+?</code>）会尽量少匹配。两者在提取 HTML 片段、日志字段、模板片段时差异很大。你可以在测试器中准备多段相似文本，比较两种写法的命中范围。更进一步，某些“看起来合理”的组合会触发大量回溯，造成性能急剧下降。理解回溯路径，核心是减少歧义：明确边界、缩小字符集、避免多层模糊量词叠加。</p>
+
+            <h2>3. 灾难性回溯的预防策略</h2>
+            <p>灾难性回溯常见于嵌套可变长度模式，比如多个 <code>.*</code> 与可选分支混合。预防策略包括：
+            第一，尽量避免不受限的通配；
+            第二，用具体字符类替代点号；
+            第三，把大正则拆成多个小步骤；
+            第四，给输入长度设置上限。正则应服务业务，而不是把所有逻辑都塞进单条表达式。可维护性和性能，通常比“语法炫技”更重要。</p>
+
+            <h2>4. flags 引发的隐蔽问题</h2>
+            <p>很多疑难问题来自 flags 组合。比如 <code>m</code> 让 <code>^</code>/<code>$</code> 对每行生效，可能造成额外命中；<code>s</code> 让点号跨行，可能扩大匹配范围；<code>i</code> 忽略大小写时，某些业务字段会出现误放行。调试建议是“单 flag 对比法”：一次只改一个 flags，观察匹配详情变化，避免一次性改多个导致无法判断影响来源。</p>
+
+            <h2>5. 正则测试器里的标准调试流程</h2>
+            <p>建议固定执行四步：
+            1) 先跑正样本，确保核心功能可用；
+            2) 再跑负样本，检查误匹配；
+            3) 放入长文本，观察性能和命中数量；
+            4) 修改后回归所有样本。你可以把这一流程当成“正则单元测试”。一旦形成样本库，任何人改规则都能快速验证，不再依赖个人经验。</p>
+
+            <h2>6. 生产环境落地建议</h2>
+            <p>在生产代码中，正则最好统一封装在校验模块，附带注释和测试样本。高风险接口应加超时与限长策略，防止恶意输入触发性能问题。对于业务语义复杂的场景，正则只做第一层过滤，后续再做结构化校验。这样分层后，即使规则需要调整，也不会牵一发而动全身。</p>
+
+            <div class="back-links">
+                <a href="tutorials.html"><i class="fas fa-arrow-left"></i> 返回教程列表</a>
+                <a href="../pages/regex_tester.html"><i class="fas fa-asterisk"></i> 打开正则测试器</a>
+                <a href="../index.html"><i class="fas fa-home"></i> 返回首页</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-content"><div class="footer-links"><a href="tutorials.html">使用教程</a><a href="about.html">关于我们</a><a href="privacy.html">隐私政策</a><a href="terms.html">使用条款</a><a href="about.html#contact">联系我们</a></div><div class="copyright">© 2026 JSONTOP | 用<span class="love">♥</span>制作 | 所有工具本地运行，数据不上传服务器</div></div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark-mode'); themeToggle.checked = true; }
+        themeToggle.addEventListener('change', function() { if (this.checked) { document.body.classList.add('dark-mode'); localStorage.setItem('theme', 'dark'); } else { document.body.classList.remove('dark-mode'); localStorage.setItem('theme', 'light'); } });
+    </script>
+</body>
+</html>

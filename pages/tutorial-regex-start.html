@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="正则表达式测试器入门教程：语法、元字符、量词、修饰符与优先级的完整上手说明。">
+    <meta name="keywords" content="正则表达式测试器,regex入门,元字符,量词,flags,正则教程">
+    <meta name="author" content="JSONTOP">
+    <meta name="robots" content="index, follow">
+
+    <link rel="icon" type="image/png" href="../assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+
+    <title>正则测试器入门：语法与 flags - JSONTOP 教程</title>
+
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/common.css">
+    <script src="../scripts/umami-loader.js"></script>
+
+    <style>
+        .article-wrap { max-width: 940px; margin: 0 auto; padding: 2.2rem 1.2rem 3rem; }
+        .article-box { background: #fff; border-radius: 14px; padding: 1.6rem; box-shadow: 0 14px 34px rgba(74,108,247,0.12); border: 1px solid rgba(74,108,247,0.15); }
+        .article-box h1 { margin: 0 0 0.7rem; font-size: 1.92rem; }
+        .article-meta { color: #6b7280; margin: 0 0 1.2rem; font-size: 0.95rem; }
+        .article-box h2 { font-size: 1.2rem; margin-top: 1.45rem; }
+        .article-box p { margin: 0.8rem 0; color: #374151; line-height: 1.9; }
+        .note-box { background: rgba(74,108,247,0.08); border-left: 4px solid #4A6CF7; border-radius: 10px; padding: 0.9rem 1rem; margin: 1rem 0; color: #374151; }
+        .back-links { margin-top: 1.5rem; display: flex; gap: 0.9rem; flex-wrap: wrap; }
+        .back-links a { padding: 0.5rem 0.9rem; border-radius: 8px; background: rgba(74,108,247,0.08); }
+        body.dark-mode .article-box { background: #1f2937; border-color: rgba(74,108,247,0.25); box-shadow: 0 14px 34px rgba(0,0,0,0.32); }
+        body.dark-mode .article-box p, body.dark-mode .article-meta, body.dark-mode .note-box { color: #d1d5db; }
+        body.dark-mode .note-box { background: rgba(74,108,247,0.18); border-left-color: #6e89f8; }
+    </style>
+</head>
+<body class="light-mode">
+    <nav class="navbar">
+        <div class="nav-logo"><a href="../index.html"><img src="../assets/favicon/favicon-32x32.png" alt="JSONTOP">JSONTOP</a></div>
+        <ul class="nav-links">
+            <li><a href="../index.html"><i class="fas fa-home"></i>首页</a></li>
+            <li><a href="tutorials.html" class="active"><i class="fas fa-book-open"></i>教程</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i>关于我们</a></li>
+            <li><a href="privacy.html"><i class="fas fa-user-shield"></i>隐私政策</a></li>
+            <li><a href="terms.html"><i class="fas fa-file-contract"></i>使用条款</a></li>
+        </ul>
+        <div class="nav-right"><div class="theme-switch"><input type="checkbox" id="theme-toggle"><label for="theme-toggle"><i class="fas fa-moon"></i></label></div></div>
+    </nav>
+
+    <main class="article-wrap">
+        <article class="article-box">
+            <h1>正则测试器入门：语法与 flags</h1>
+            <p class="article-meta">教程分类：正则入门 | 更新时间：2026-02-28</p>
+
+            <h2>1. 把正则看成“文本模式语言”</h2>
+            <p>正则表达式（Regular Expression）本质上是描述文本模式的一种语言。它不是只用来“查找”，还可以用于校验、替换、提取、分割。入门时你可以把它理解为“超级通配符”，但比文件通配符更精细：不仅可以匹配“有什么字符”，还能匹配“字符出现的位置、次数、前后关系”。在 JSONTOP 的正则测试器中，你写下规则后可以即时看到高亮结果，这正是把抽象规则转成可验证结果的最佳方式。学习正则最怕死记语法，最有效的方法是每学一个语法点就放进测试器验证一遍。</p>
+
+            <h2>2. 入门必会：元字符、字符类、量词</h2>
+            <p>你先掌握三组核心元素就足够了。第一组是元字符与字符类，例如 <code>\d</code> 表示数字、<code>\w</code> 表示字母数字下划线、<code>[a-z]</code> 表示小写字母区间、<code>[^abc]</code> 表示“非 abc”。第二组是边界符，例如 <code>^</code> 与 <code>$</code> 表示开头和结尾、<code>\b</code> 表示单词边界。第三组是量词：<code>*</code> 是 0 次或多次，<code>+</code> 是 1 次或多次，<code>?</code> 是 0 次或 1 次，<code>{n,m}</code> 表示出现次数范围。你在测试器里可以从最短规则开始，比如先写 <code>\d+</code> 验证数字提取，再逐步加边界变成 <code>^\d+$</code> 做整行校验。</p>
+
+            <h2>3. flags 的作用要配合场景理解</h2>
+            <p>正则表达式右侧的修饰符（flags）会直接改变匹配行为。最常用是 <code>g</code>（全局匹配）、<code>i</code>（忽略大小写）、<code>m</code>（多行模式）、<code>s</code>（让点号匹配换行）、<code>u</code>（Unicode）。你在测试器里会明显看到差异：不加 <code>g</code> 往往只拿到第一个匹配；加 <code>m</code> 后，<code>^</code> 和 <code>$</code> 会针对每一行生效；加 <code>s</code> 后，<code>.</code> 才能跨行吞文本。实践建议是“最小 flags 原则”：默认只加你明确需要的标记，避免莫名其妙的匹配变化。</p>
+
+            <h2>4. 运算符优先级与分组</h2>
+            <p>很多误判来自优先级理解错误。正则从左到右计算，但存在优先级：转义、分组/字符类、量词、位置锚点，再到管道 <code>|</code>。例如 <code>m|food</code> 表示匹配 “m” 或 “food”；如果你想匹配 mood 或 food，应该写成 <code>(m|f)ood</code>。这也是为什么分组 <code>()</code> 很关键，它不仅用于捕获，也用于改变计算边界。建议在复杂规则里主动加分组，避免依赖“默认优先级猜测”。</p>
+
+            <h2>5. 贪婪与非贪婪</h2>
+            <p>默认情况下量词是贪婪的，会尽可能多地吞字符。比如在 HTML 文本里用 <code><.*></code> 可能一次跨多个标签。把量词改为非贪婪（在量词后加 <code>?</code>），如 <code><.*?></code>，通常更符合“提取单个标签”的预期。你可以在测试器输入多段标签文本，分别测试贪婪与非贪婪写法，结果会非常直观。这个知识点在日志截取、模板清洗、文本抓取里非常常用。</p>
+
+            <h2>6. 推荐的入门训练法</h2>
+            <p>从业务问题反推规则，而不是反过来。先准备 10 条正样本和 10 条负样本，再写规则让它们都符合预期。每次修改只改一个因素（比如只改量词或只改边界），这样才能知道变化来源。最终把“规则 + flags + 样本”一起记录，未来复用时可以直接回归测试。你会发现正则并不神秘，它只是需要一套可验证、可迭代的方法论。</p>
+
+            <div class="back-links">
+                <a href="tutorials.html"><i class="fas fa-arrow-left"></i> 返回教程列表</a>
+                <a href="../pages/regex_tester.html"><i class="fas fa-asterisk"></i> 打开正则测试器</a>
+                <a href="../index.html"><i class="fas fa-home"></i> 返回首页</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-content"><div class="footer-links"><a href="tutorials.html">使用教程</a><a href="about.html">关于我们</a><a href="privacy.html">隐私政策</a><a href="terms.html">使用条款</a><a href="about.html#contact">联系我们</a></div><div class="copyright">© 2026 JSONTOP | 用<span class="love">♥</span>制作 | 所有工具本地运行，数据不上传服务器</div></div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark-mode'); themeToggle.checked = true; }
+        themeToggle.addEventListener('change', function() { if (this.checked) { document.body.classList.add('dark-mode'); localStorage.setItem('theme', 'dark'); } else { document.body.classList.remove('dark-mode'); localStorage.setItem('theme', 'light'); } });
+    </script>
+</body>
+</html>

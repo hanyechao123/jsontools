@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HTML 在线预览工具教程：快速上手编辑区、预览区、常见输入方式与基础排错。">
+    <meta name="keywords" content="HTML在线预览工具,HTML教程,前端预览,实时预览">
+    <meta name="author" content="JSONTOP">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/png" href="../assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+    <title>HTML在线预览工具入门 - JSONTOP 教程</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/common.css">
+    <script src="../scripts/umami-loader.js"></script>
+    <style>
+        .article-wrap { max-width: 940px; margin: 0 auto; padding: 2.2rem 1.2rem 3rem; }
+        .article-box { background: #fff; border-radius: 14px; padding: 1.6rem; box-shadow: 0 14px 34px rgba(74,108,247,0.12); border: 1px solid rgba(74,108,247,0.15); }
+        .article-box h1 { margin: 0 0 0.7rem; font-size: 1.92rem; }
+        .article-meta { color: #6b7280; margin: 0 0 1.2rem; font-size: 0.95rem; }
+        .article-box h2 { font-size: 1.2rem; margin-top: 1.45rem; }
+        .article-box p { margin: 0.8rem 0; color: #374151; line-height: 1.9; }
+        .back-links { margin-top: 1.5rem; display: flex; gap: 0.9rem; flex-wrap: wrap; }
+        .back-links a { padding: 0.5rem 0.9rem; border-radius: 8px; background: rgba(74,108,247,0.08); }
+        body.dark-mode .article-box { background: #1f2937; border-color: rgba(74,108,247,0.25); box-shadow: 0 14px 34px rgba(0,0,0,0.32); }
+        body.dark-mode .article-box p, body.dark-mode .article-meta { color: #d1d5db; }
+    </style>
+</head>
+<body class="light-mode">
+    <nav class="navbar">
+        <div class="nav-logo"><a href="../index.html"><img src="../assets/favicon/favicon-32x32.png" alt="JSONTOP">JSONTOP</a></div>
+        <ul class="nav-links">
+            <li><a href="../index.html"><i class="fas fa-home"></i>首页</a></li>
+            <li><a href="tutorials.html" class="active"><i class="fas fa-book-open"></i>教程</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i>关于我们</a></li>
+            <li><a href="privacy.html"><i class="fas fa-user-shield"></i>隐私政策</a></li>
+            <li><a href="terms.html"><i class="fas fa-file-contract"></i>使用条款</a></li>
+        </ul>
+        <div class="nav-right"><div class="theme-switch"><input type="checkbox" id="theme-toggle"><label for="theme-toggle"><i class="fas fa-moon"></i></label></div></div>
+    </nav>
+    <main class="article-wrap">
+        <article class="article-box">
+            <h1>HTML在线预览工具入门</h1>
+            <p class="article-meta">教程分类：HTML预览 | 更新时间：2026-02-28</p>
+            <h2>1. 这个工具解决什么问题</h2>
+            <p>HTML 在线预览工具最核心的价值是“所写即所得”。你在编辑器里输入 HTML、CSS、JavaScript，不用本地搭建项目、不用手动刷新页面，就能立刻在右侧预览区看到渲染结果。对于初学者，这可以极大降低前端学习门槛；对于日常开发者，这可以用于快速验证一个组件片段、一个样式思路、或一段交互脚本。很多时候你只想测试一段代码是否可行，不想打开完整工程，这时在线预览工具比 IDE 项目运行更轻便。尤其在处理邮件模板、活动页片段、文案展示区时，这种即时反馈非常高效。</p>
+            <h2>2. 标准使用流程</h2>
+            <p>建议你按固定流程使用。第一步，把 HTML 骨架先写出来，至少包含一个容器元素和需要展示的内容结构。第二步，补充 CSS，先确认布局，再优化颜色、间距和字体。第三步，在需要时加入 JavaScript，用最小功能验证交互逻辑。第四步，查看预览结果与代码是否一致，再进入微调阶段。这个流程看似普通，但能帮你把问题分层：结构问题先解，样式问题后解，交互问题最后解。很多“调半天没结果”的情况，其实是结构、样式、脚本同时改，导致定位困难。</p>
+            <h2>3. 新手常见错误与修复</h2>
+            <p>第一个常见错误是标签未闭合，比如 <code>div</code>、<code>ul</code>、<code>p</code> 少了结束标签，这会导致布局错位。第二个错误是 CSS 选择器命名不一致，HTML 写的是 <code>card-title</code>，CSS 却写成 <code>.cardtitle</code>，最终看不到样式。第三个错误是 JavaScript 在 DOM 未准备好时执行，导致查询元素失败。你可以把脚本放在页面底部，或监听 <code>DOMContentLoaded</code> 后执行。第四个错误是外链资源地址无效，尤其是字体和图标链接写错，预览区就会与预期差很大。排查时建议一次只改一个点，每改一步就观察结果。</p>
+            <h2>4. 如何把预览结果用于真实项目</h2>
+            <p>在线预览工具通常用于“草图验证”和“片段打磨”。当你在工具中确认布局与交互逻辑可行后，可以把代码迁移到正式项目中，再按工程规范拆分为组件和样式模块。迁移时要特别注意路径、构建环境、框架差异。比如在工具里直接写的全局 CSS，进入 React/Vue 项目后可能要改成作用域样式；工具里可用的 CDN 资源，项目内要改成 npm 包或本地资源。建议在迁移前先把代码整理成“结构区、样式区、脚本区”三段，减少复制粘贴后的混乱。</p>
+            <h2>5. 提升效率的小技巧</h2>
+            <p>第一，先写最小可运行版本，再逐步增加复杂度。第二，保留一个你常用的页面基础模板，包含通用 reset 和容器布局，每次直接改内容。第三，用语义化标签（如 <code>header</code>、<code>main</code>、<code>section</code>）提高可读性。第四，遇到布局问题先加临时边框辅助定位。第五，把验证通过的片段按场景归档，例如按钮样式、卡片模板、弹窗结构，后续复用速度会明显提升。在线预览工具的核心价值不只是“能看效果”，更是“把试错成本降到最低”，让你在短时间内把想法快速落地。</p>
+            <div class="back-links">
+                <a href="tutorials.html"><i class="fas fa-arrow-left"></i> 返回教程列表</a>
+                <a href="../pages/html_preview.html"><i class="fas fa-code-branch"></i> 打开HTML预览工具</a>
+                <a href="../index.html"><i class="fas fa-home"></i> 返回首页</a>
+            </div>
+        </article>
+    </main>
+    <footer><div class="footer-content"><div class="footer-links"><a href="tutorials.html">使用教程</a><a href="about.html">关于我们</a><a href="privacy.html">隐私政策</a><a href="terms.html">使用条款</a><a href="about.html#contact">联系我们</a></div><div class="copyright">© 2026 JSONTOP | 用<span class="love">♥</span>制作 | 所有工具本地运行，数据不上传服务器</div></div></footer>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark-mode'); themeToggle.checked = true; }
+        themeToggle.addEventListener('change', function() { if (this.checked) { document.body.classList.add('dark-mode'); localStorage.setItem('theme', 'dark'); } else { document.body.classList.remove('dark-mode'); localStorage.setItem('theme', 'light'); } });
+    </script>
+</body>
+</html>
